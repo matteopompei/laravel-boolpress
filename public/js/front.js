@@ -2017,6 +2017,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Main",
   data: function data() {
@@ -2104,7 +2110,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".post[data-v-26278c26] {\n  height: 300px;\n  width: 450px;\n  background: #fff;\n  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);\n}", ""]);
+exports.push([module.i, "main[data-v-26278c26] {\n  margin-top: 50px;\n}\nmain .post[data-v-26278c26] {\n  height: 500px;\n  width: 450px;\n  background: #fff;\n  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);\n}\nmain .post .category[data-v-26278c26] {\n  margin: 5px 0;\n  padding: 3px 10px;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  background: #527fe0;\n  border-radius: 3px;\n  color: #fff;\n  font-size: 0.8rem;\n}\nmain .post .tags[data-v-26278c26] {\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  margin: 5px 0;\n}\nmain .post .tags ul[data-v-26278c26] {\n  padding: 0;\n}\nmain .post .tags li[data-v-26278c26] {\n  display: inline;\n  padding: 3px 10px;\n  margin-right: 3px;\n  background: #585b62;\n  border-radius: 3px;\n  color: #fff;\n  font-size: 0.7rem;\n}", ""]);
 
 // exports
 
@@ -3442,9 +3448,35 @@ var render = function () {
       {
         staticClass: "container-fluid d-flex justify-content-center flex-wrap",
       },
-      _vm._l(_vm.posts, function (post, index) {
-        return _c("div", { key: index, staticClass: "post m-3 p-5" }, [
+      _vm._l(_vm.posts, function (post) {
+        return _c("div", { key: post.slug, staticClass: "post m-3 p-5" }, [
           _c("h2", [_vm._v(_vm._s(post.title))]),
+          _vm._v(" "),
+          post.category
+            ? _c("div", { staticClass: "category" }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(post.category.name) +
+                    "\n            "
+                ),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "tags" }, [
+            _c(
+              "ul",
+              _vm._l(post.tags, function (tag) {
+                return _c("li", { key: tag.slug }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(tag.name) +
+                      "\n                    "
+                  ),
+                ])
+              }),
+              0
+            ),
+          ]),
           _vm._v(" "),
           _c("p", [_vm._v(_vm._s(post.content))]),
         ])
