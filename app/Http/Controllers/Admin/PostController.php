@@ -11,6 +11,13 @@ use App\Tag;
 
 class PostController extends Controller
 {
+    protected $validation = [
+        'title' => 'required|max:255',
+        'content' => 'required',
+        'category_id' => 'nullable|exists:categories,id',
+        'tags' => 'nullable|exists:tags,id'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -43,10 +50,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required'
-        ]);
+        $request->validate($this->validation);
 
         $form_data = $request->all();
 
@@ -63,7 +67,8 @@ class PostController extends Controller
         $new_post = new Post();
         $new_post->fill($form_data);
         $new_post->save();
-        $new_post->tags()->sync($form_data['tags']);
+        $new_post->tags()->sync(isset($form_data['tags']) ? $form_data['tags'] : []);
+
         return redirect()->route('admin.posts.index');
     }
 
@@ -100,10 +105,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required'
-        ]);
+        $request->validate($this->validation);
 
         $form_data = $request->all();
 
@@ -124,7 +126,7 @@ class PostController extends Controller
         $form_data['slug'] = $slug;
 
         $post->update($form_data);
-        $post->tags()->sync($form_data['tags']);
+        $post->tags()->sync(isset($form_data['tags']) ? $form_data['tags'] : []);
 
         return redirect()->route('admin.posts.index');
     }
