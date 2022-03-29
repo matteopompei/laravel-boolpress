@@ -13,6 +13,11 @@
                 </ul>
             </div>
             <p>{{ post.content }}</p>
+
+            <router-link
+                :to="{ name: 'single-post', params: { slug: post.slug } }"
+                >Visualizza post</router-link
+            >
         </div>
     </div>
 </template>
