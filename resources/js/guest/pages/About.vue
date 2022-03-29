@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container my-5">
         <h1>About us</h1>
         <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae
