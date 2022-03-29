@@ -1,6 +1,6 @@
 <template>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="#">Boolpress</a>
             <button
                 class="navbar-toggler"
@@ -26,6 +26,10 @@
                         >
                     </li>
                 </ul>
+            </div>
+            <div class="form-inline">
+                <a class="btn" href="/login">Accedi</a>
+                <a class="btn btn-success" href="/register">Registrati</a>
             </div>
         </nav>
     </header>
