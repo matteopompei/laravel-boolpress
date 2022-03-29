@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front');
-});
+// Route::get('/', function () {
+//     return view('front');
+// });
 
 Auth::routes();
 
@@ -28,6 +28,10 @@ Route::middleware('auth')
         Route::get('/', 'HomeController@index')
             ->name('home');
         Route::resource('/posts', 'PostController');
-        Route::resource('/categories', 'CategoryController');
-        Route::resource('/tags', 'TagController');
+        // Route::resource('/categories', 'CategoryController');
+        // Route::resource('/tags', 'TagController');
     });
+
+Route::get("{any?}", function () {
+    return view("front");
+})->where("any", ".*");
